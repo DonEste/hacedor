@@ -1,3 +1,5 @@
 /firmware
 /www
-eventlog.txt
+/sys/eventlog.txt
+/sys/heightmap.csv
+/sys/accelerometer
