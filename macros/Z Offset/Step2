@@ -1,0 +1,9 @@
+; Second step to find Z probe offset
+
+G92 Z0  ; set z position to 0
+G1 Z10  ; lift head 10mm
+G30 S-1 ; report probe z offset
+G1 Z10  ; lift head 10mm
+G30 S-1 ; report probe z offset
+G1 Z10  ; lift head 10mm
+G30 S-1 ; report probe z offset
