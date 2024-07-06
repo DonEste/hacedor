@@ -1,5 +1,6 @@
 /firmware
 /www
+/gcodes
 /sys/eventlog.txt
 /sys/heightmap.csv
 /sys/accelerometer
