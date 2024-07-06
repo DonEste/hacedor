@@ -1,2 +1,2 @@
 M150 E0 R255 P1 S1 F1 ; set first to red but weak
-M150 E0 R255 P255 S2   ; set  next to red
+M150 E0 R255 P255 S2  ; set  next to red
