@@ -85,7 +85,7 @@ T0                                                                  ; select fir
 M950 E0 C"led" T2 U3                                                ; configure LED strip #0
 M150 E0 W255 R255 U255 B255 P1 S1 F1                                ; set first to blue but weak ; set the first led to weak white
 M150 E0 W255 R255 U255 B255 P255 S2                                 ; set the rest to brigth white
-M557 X25:275 Y25:275 S50:50                                         ; define grid for mesh bed compensation
+M557 X0:300 Y0:300 S100:100                                         ; define grid for mesh bed compensation
 M207 S0.5                                                           ; retraction
 M572 D0 S0.04                                                       ; pressure advance
-M929 P"eventlog.txt" S1                                             ; start logging warnings to file a_eventlog.txt
+M929 P"log1.log" S3                                                 ; start logging warnings to file a_eventlog.txt
