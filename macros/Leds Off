@@ -1,0 +1,2 @@
+M106 P2 S0    ; Led bat on
+M150 E0 P0 S3 ; Leds to White and RGB White

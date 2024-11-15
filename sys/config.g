@@ -47,7 +47,7 @@ M671 X-50:-50:330:330 Y350:-50:350:-50 S10                          ; z stepper 
 
 ; Probes
 M558 K0 P8 C"121.io1.in" H5 F1800:120 T6000                         ; configure unfiltered digital probe via slot #0
-G31 P500 X0 Y0 Z2.24                                                ; set Z probe trigger value, offset and trigger height
+G31 P500 X0 Y0 Z2.5                                                 ; set Z probe trigger value, offset and trigger height
 
 ; Endstops
 M574 X1 P"!io0.in" S1                                               ; configure X axis endstop
@@ -71,9 +71,10 @@ M140 P0 H0                                                          ; configure 
 
 ; Fans
 M950 F0 C"121.out1"                                                 ; create fan #0
-M106 P0 S0 L0 X1 B0.1                                               ; configure fan #0
-M950 F1 C"121.out2"                                                 ; create fan #1
-M106 P1 S0 B0.1 H1 T100                                             ; configure fan #1
+M106 P0 S0 L0 X0.9 B0.1                                             ; configure fan #0
+M950 F1 C"121.out2" Q500                                            ; create fan #1
+M106 P1 S0 B0.1 H1 T100 X0.9                                        ; configure fan #1
+M950 F2 C"out5" Q500                                                ; create fan #2
 
 ; Tools
 M563 P0 D0 H1 F0                                                    ; create tool #0
@@ -82,10 +83,11 @@ M568 P0 R0 S0                                                       ; set initia
 ; Miscellaneous
 M501                                                                ; load saved parameters from non-volatile memory
 T0                                                                  ; select first tool
-M950 E0 C"led" T2 U3                                                ; configure LED strip #0
-M150 E0 W255 R255 U255 B255 P1 S1 F1                                ; set first to blue but weak ; set the first led to weak white
-M150 E0 W255 R255 U255 B255 P255 S2                                 ; set the rest to brigth white
-M557 X0:300 Y0:300 S100:100                                         ; define grid for mesh bed compensation
+M950 E0 C"121.io0.out" T2 U3                                        ; configure LED strip #0
+M591 P7 C"121.io2.in" S1 L7 E20 D0                                  ; filament monitor connected to E0 endstop
+M557 X15:285 Y15:285 S90:90                                         ; define grid for mesh bed compensation
 M207 S0.5                                                           ; retraction
 M572 D0 S0.04                                                       ; pressure advance
-M929 P"log1.log" S3                                                 ; start logging warnings to file a_eventlog.txt
+M929 P"log.log" S3                                                  ; start logging debug to file a_eventlog.txt
+M98 P"/macros/Leds On"                                              ; All leds on
+M98 P"truelevel.g"                                                  ; home all

@@ -1,7 +1,7 @@
 {
     "main": {
         "language": "en",
-        "lastHostname": "192.168.0.111",
+        "lastHostname": "192.168.1.102",
         "darkTheme": true,
         "useBinaryPrefix": true,
         "disableAutoComplete": false,
@@ -34,7 +34,6 @@
         },
         "enabledPlugins": [
             "HeightMap",
-            "ObjectModelBrowser",
             "InputShaping",
             "GCodeViewer"
         ],
