@@ -1,9 +1,7 @@
 ; Second step to find Z probe offset
 
-G92 Z0  ; set z position to 0
-G1 Z10  ; lift head 10mm
-G30 S-1 ; report probe z offset
-G1 Z10  ; lift head 10mm
-G30 S-1 ; report probe z offset
-G1 Z10  ; lift head 10mm
-G30 S-1 ; report probe z offset
+G31 P500 X25 Y0 ; Set the probe X and Y offsets in active memory
+G92 Z0.2        ; Set current position to Z=0
+G1 Z10          ; Lift head 10mm
+G30 S-3 F20     ; Probe bed, calculate trigger height, and update Z offset in memory
+M500 P31        ; Save the new G31 Z offset to config-override.g

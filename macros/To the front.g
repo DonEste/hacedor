@@ -1,1 +1,0 @@
-G1 X300 Y150 Z150 ; move to a convenient location
