@@ -24,7 +24,7 @@ hacedor/
 │   ├── tpre0.g           # Tool-pre actions (before selecting Tool 0)
 │   └── tpost0.g          # Tool-post actions (after selecting Tool 0)
 ├── macros/               # Custom user macros and automation scripts
-└── orca/                 # OrcaSlicer printer, process and filament profiles (see orca/README.md)
+└── orca/                 # OrcaSlicer custom G-code: start, end, layer change, pause (see orca/README.md)
 ```
 
 ---

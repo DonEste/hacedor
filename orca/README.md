@@ -1,20 +1,18 @@
-# OrcaSlicer profiles
+# OrcaSlicer custom G-code
 
-Backup of the OrcaSlicer user profiles used with this printer (OrcaSlicer 2.4).
+The custom G-code blocks of the OrcaSlicer printer profile **Hacedor** (OrcaSlicer 2.4), one file per field.
 
-| Folder | Profile | Notes |
+| File | Orca field (Printer settings → Machine G-code) | What it does |
 |---|---|---|
-| `machine/` | `Hacedor` | Printer limits, start / end / layer-change / pause G-code. Inherits `MyRRF 0.4 nozzle`. |
-| `process/` | `Normal.4` | 0.4 mm nozzle, 0.2 mm layers; accelerations 4000 (default, inner wall, first layer), 3000 (outer wall, top), 5500 (travel). |
-| `filament/` | `ABS`, `PETG`, `PLA`, `TPU` | Temperatures, flow, cooling. Inherit Orca's Generic profiles. |
+| `machine_start.gcode` | Machine start G-code | Calls `/sys/lib/print_start.g` with the bed temperature (`B`), nozzle temperature (`H`) and filament type (`F`). The macro heats, homes, levels, applies the filament profile and purges. |
+| `machine_end.gcode` | Machine end G-code | `M0`, which runs `sys/stop.g` on the printer. |
+| `before_layer_change.gcode` | Before layer change G-code | Resets the extruder position; on the first layer sets the "printing" LEDs. |
+| `layer_change.gcode` | Layer change G-code | Marker comment only (inherited from Orca's MyRRF preset). |
+| `pause.gcode` | Pause G-code | `M226`, which runs `sys/pause.g`. |
+| `filament_start.gcode` / `filament_end.gcode` | Filament settings → Advanced | Orca's default comments, the same for every filament. |
 
-The start G-code calls `M98 P"/sys/lib/print_start.g" B… H… F"[filament_type]"`, so the filament names must match the folders under `/filaments` on the printer.
+Fields that are empty in this profile, so not saved here: change filament, time-lapse, printing by object, template custom G-code, extrusion-role change, wrapping detection, file start.
 
-## Restoring
+The first two comment lines of each file are a header added for this backup. When restoring, paste the text below them into the matching Orca field (keeping the header is harmless; it is only comments).
 
-1. Close OrcaSlicer.
-2. Copy the JSON files into `%APPDATA%\OrcaSlicer\user\default\<machine|process|filament>\`.
-3. In `machine/Hacedor.json`, replace `PRINTER_IP_OR_HOSTNAME` with the printer's address (it is blanked here because this repository is public), or set it later in Orca's printer connection settings.
-4. Start OrcaSlicer; the profiles appear under the user presets.
-
-Only the `.json` files are kept. Orca's `.info` side files (sync metadata) are not needed and are recreated by Orca.
+`[...]` and `{...}` are Orca placeholders and conditions, filled in when slicing. `F"[filament_type]"` must match a folder name under `/filaments` on the printer (ABS, PETG, PLA, TPU).
