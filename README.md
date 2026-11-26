@@ -10,21 +10,27 @@ The configuration files are organized in directories matching the structure requ
 
 ```text
 hacedor/
-├── sys/                  # RepRapFirmware System Configurations
-│   ├── config.g          # Primary printer configuration script
-│   ├── bed.g             # Bed probing and leveling routine
-│   ├── homeall.g         # Homing script for all axes (X, Y, and Z)
-│   ├── homex.g           # Homing script for the X axis
-│   ├── homey.g           # Homing script for the Y axis
-│   ├── homez.g           # Homing script for the Z axis
-│   ├── pause.g           # Operations performed when pausing a print
-│   ├── resume.g          # Operations performed when resuming a print
-│   ├── truelevel.g       # Automated gantry leveling script
-│   ├── tfree0.g          # Tool-free actions (when releasing Tool 0)
-│   ├── tpre0.g           # Tool-pre actions (before selecting Tool 0)
-│   └── tpost0.g          # Tool-post actions (after selecting Tool 0)
-├── macros/               # Custom user macros and automation scripts
-└── orca/                 # OrcaSlicer custom G-code: start, end, layer change, pause (see orca/README.md)
+├── sys/                     # RepRapFirmware system files
+│   ├── config.g             # Main printer configuration
+│   ├── config-override.g    # Values saved with M500 (Z probe offset, workplace offsets)
+│   ├── daemon.g             # Background loop: Raspberry Pi temperature control of the board/Pi fan
+│   ├── bed.g                # G32: heat-soak, quad gantry leveling, mesh
+│   ├── truelevel.g          # Quad Z motor leveling
+│   ├── homeall.g / homex.g / homey.g / homez.g
+│   ├── start.g / stop.g     # Job start (empty) / job end: park, heaters off, LEDs
+│   ├── pause.g / resume.g   # Park and return to the paused position
+│   ├── tpre0.g / tpost0.g / tfree0.g
+│   ├── filaments.csv        # Filament loaded in each extruder
+│   └── lib/                 # Helper macros called by the files above (not shown in DWC)
+│       ├── print_start.g    # Slicer start: heat, level, apply filament profile, purge
+│       ├── led.g            # All LED states (heating, printing, done, error...)
+│       ├── breathe.g        # Heat-wait with pulsing LEDs and safety timeout
+│       ├── filament_load.g / filament_unload.g
+│       └── filament_sensor.g
+├── filaments/               # Per-filament files used by DWC's Load/Unload and print_start
+│   └── ABS/ PETG/ PLA/ TPU/ # config.g (pressure advance, skew), load.g, unload.g
+├── macros/                  # Macros shown in DWC (LEDs, filament sensor, probe offset steps...)
+└── orca/                    # OrcaSlicer custom G-code: start, end, layer change, pause (see orca/README.md)
 ```
 
 ---
@@ -57,10 +63,17 @@ Define the movements, endstop triggers, and Z-probe behaviors to safely referenc
 To deploy these configurations to your printer:
 1. Access your Duet Web Control (DWC) interface via your browser.
 2. Navigate to **Files** > **System** tab.
-3. Upload the files from the `sys/` folder directly.
+3. Upload the files from `sys/` (including `sys/lib/`), `filaments/` and `macros/` to the matching folders.
 4. Restart the firmware (`M999`) to apply the changes.
 
 Alternatively, for offline setup, copy the files directly onto the printer's SD card under the `/sys` directory.
+
+---
+
+## 🔒 Not tracked
+
+* `sys/SBCC_Config.json`: contains the SBC's API key.
+* `sys/dwc-cache.json`, `sys/log.log`, `sys/heightmap.csv`, `sys/accelerometer/`: machine-generated data.
 
 ---
 
