@@ -1,0 +1,110 @@
+{
+    "before_layer_change_gcode": ";BEFORE_LAYER_CHANGE\n;[layer_z]\nG92 E0                           ; Reset extruder distance every layer\n\n; Set printing LEDs on first layer (in case start.g didn't run)\n{if layer_num == 1}\nM98 P\"/sys/lib/led.g\" S\"printing\"     ; Ensure printing LEDs are active\n{endif}\n",
+    "deretraction_speed": [
+        "40"
+    ],
+    "enable_filament_ramming": "0",
+    "extruder_clearance_height_to_lid": "250",
+    "extruder_clearance_height_to_rod": "200",
+    "from": "User",
+    "host_type": "duet",
+    "inherits": "MyRRF 0.4 nozzle",
+    "machine_end_gcode": "M0 ; Invokes sys/stop.g which contains all end-print logic",
+    "machine_max_acceleration_e": [
+        "1000",
+        "5000"
+    ],
+    "machine_max_acceleration_extruding": [
+        "5500",
+        "20000"
+    ],
+    "machine_max_acceleration_retracting": [
+        "1000",
+        "5000"
+    ],
+    "machine_max_acceleration_travel": [
+        "5500",
+        "20000"
+    ],
+    "machine_max_acceleration_x": [
+        "5500",
+        "20000"
+    ],
+    "machine_max_acceleration_y": [
+        "5500",
+        "20000"
+    ],
+    "machine_max_acceleration_z": [
+        "1000",
+        "200"
+    ],
+    "machine_max_speed_x": [
+        "190",
+        "200"
+    ],
+    "machine_max_speed_y": [
+        "190",
+        "200"
+    ],
+    "machine_max_speed_z": [
+        "20",
+        "12"
+    ],
+    "machine_pause_gcode": "M226",
+    "machine_start_gcode": "; The following lines trick Orca Slicer into NOT injecting automatic heating commands\n; M190 S[first_layer_bed_temperature]\n; M109 S[first_layer_temperature]\n\n; Call our custom print_start macro, passing the Bed (B) and Hotend (H) temperatures\nM98 P\"/sys/lib/print_start.g\" B[first_layer_bed_temperature] H[first_layer_temperature] F\"[filament_type]\"",
+    "max_layer_height": [
+        "0.45"
+    ],
+    "name": "Hacedor",
+    "nozzle_type": [
+        "brass"
+    ],
+    "print_host": "PRINTER_IP_OR_HOSTNAME",
+    "printable_area": [
+        "0x0",
+        "300x0",
+        "300x300",
+        "0x300"
+    ],
+    "printable_height": "250",
+    "printer_extruder_id": [
+        "1"
+    ],
+    "printer_extruder_variant": [
+        "Direct Drive Standard"
+    ],
+    "printer_settings_id": "Hacedor",
+    "printer_structure": "corexy",
+    "purge_in_prime_tower": "0",
+    "retract_lift_enforce": [
+        "Top Only"
+    ],
+    "retract_when_changing_layer": [
+        "0"
+    ],
+    "retraction_minimum_travel": [
+        "3"
+    ],
+    "retraction_speed": [
+        "40"
+    ],
+    "single_extruder_multi_material": "0",
+    "support_air_filtration": "0",
+    "support_chamber_temp_control": "0",
+    "thumbnails": "48x48/PNG, 300x300/PNG",
+    "time_cost": "50",
+    "version": "2.2.0.4",
+    "wipe": [
+        "0"
+    ],
+    "z_hop": [
+        "0.2"
+    ],
+    "z_hop_types": [
+        "Auto Lift"
+    ],
+    "machine_max_speed_e": [
+        "40",
+        "25"
+    ]
+}
