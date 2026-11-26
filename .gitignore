@@ -4,3 +4,8 @@
 /sys/eventlog.txt
 /sys/heightmap.csv
 /sys/accelerometer
+
+# Machine-local or private files
+/sys/SBCC_Config.json
+/sys/dwc-cache.json
+/sys/log.log

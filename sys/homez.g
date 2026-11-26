@@ -2,11 +2,11 @@
 ; called to home the Z axis
 ;
 
+M98 P"/sys/lib/led.g" S"homing"             ; Set LEDs to Cyan/Homing status
+
 ; increase Z
 G91                                    ; relative positioning
-
 G1 H2 Z10                              ; move Z relative to current position to avoid dragging nozzle over the bed
-
 G90                                    ; absolute positioning
 
 ; home Z
@@ -14,4 +14,7 @@ var xCenter = move.compensation.probeGrid.mins[0] + (move.compensation.probeGrid
 var yCenter = move.compensation.probeGrid.mins[1] + (move.compensation.probeGrid.maxs[1] - move.compensation.probeGrid.mins[1]) / 2 - sensors.probes[0].offsets[1]
 echo {var.xCenter}, {var.yCenter}
 G1 X{var.xCenter} Y{var.yCenter} F6000 ; go to bed centre
+M558 H5                                          ; normal probe dive height (a previous aborted G29 may have left it lower)
 G30                                    ; probe the bed
+
+M98 P"/sys/lib/led.g" S"standby"            ; Restore LEDs to Standby status

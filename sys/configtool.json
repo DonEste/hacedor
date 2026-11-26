@@ -262,10 +262,10 @@
     "move": {
         "axes": [
             {
-                "acceleration": 4000,
+                "acceleration": 500,
                 "babystep": 0,
                 "backlash": 0,
-                "current": 1200,
+                "current": 800,
                 "drivers": [
                     {
                         "board": 0,
@@ -273,7 +273,7 @@
                     }
                 ],
                 "homed": false,
-                "jerk": 400,
+                "jerk": 150,
                 "letter": "X",
                 "machinePosition": null,
                 "max": 300,
@@ -287,17 +287,17 @@
                 "percentCurrent": 100,
                 "percentStstCurrent": null,
                 "reducedAcceleration": 0,
-                "speed": 180,
+                "speed": 200,
                 "stepsPerMm": 80,
                 "userPosition": null,
                 "visible": true,
                 "workplaceOffsets": []
             },
             {
-                "acceleration": 4000,
+                "acceleration": 500,
                 "babystep": 0,
                 "backlash": 0,
-                "current": 1200,
+                "current": 800,
                 "drivers": [
                     {
                         "board": 0,
@@ -305,7 +305,7 @@
                     }
                 ],
                 "homed": false,
-                "jerk": 400,
+                "jerk": 150,
                 "letter": "Y",
                 "machinePosition": null,
                 "max": 300,
@@ -319,17 +319,17 @@
                 "percentCurrent": 100,
                 "percentStstCurrent": null,
                 "reducedAcceleration": 0,
-                "speed": 180,
+                "speed": 200,
                 "stepsPerMm": 80,
                 "userPosition": null,
                 "visible": true,
                 "workplaceOffsets": []
             },
             {
-                "acceleration": 400,
+                "acceleration": 20,
                 "babystep": 0,
                 "backlash": 0,
-                "current": 900,
+                "current": 600,
                 "drivers": [
                     {
                         "board": 0,
@@ -349,10 +349,10 @@
                     }
                 ],
                 "homed": false,
-                "jerk": 50,
+                "jerk": 2,
                 "letter": "Z",
                 "machinePosition": null,
-                "max": 260,
+                "max": 300,
                 "maxProbed": false,
                 "microstepping": {
                     "interpolated": true,
@@ -363,7 +363,7 @@
                 "percentCurrent": 100,
                 "percentStstCurrent": null,
                 "reducedAcceleration": 0,
-                "speed": 20,
+                "speed": 30,
                 "stepsPerMm": 400,
                 "userPosition": null,
                 "visible": true,
@@ -424,8 +424,8 @@
         },
         "extruders": [
             {
-                "acceleration": 1000,
-                "current": 500,
+                "acceleration": 250,
+                "current": 600,
                 "driver": {
                     "board": 121,
                     "driver": 0
@@ -433,7 +433,7 @@
                 "filament": "",
                 "filamentDiameter": 1.75,
                 "factor": 1,
-                "jerk": 120,
+                "jerk": 2,
                 "microstepping": {
                     "interpolated": true,
                     "value": 16
@@ -446,7 +446,7 @@
                 "percentCurrent": 100,
                 "percentStstCurrent": null,
                 "position": 0,
-                "pressureAdvance": 0.04,
+                "pressureAdvance": 0,
                 "rawPosition": 0,
                 "speed": 60,
                 "stepsPerMm": 727.57
@@ -532,7 +532,7 @@
     },
     "network": {
         "corsSite": null,
-        "hostname": "Hacedor",
+        "hostname": "duet",
         "interfaces": [
             {
                 "activeProtocols": [

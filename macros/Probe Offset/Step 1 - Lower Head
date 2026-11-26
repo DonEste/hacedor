@@ -1,0 +1,6 @@
+; First step to find Z probe offset
+
+G1 X150 Y150 Z10 F12000 ; move to center
+G30 S-1             ; lower head
+
+M564 S0             ; disable axis limit
